@@ -17,10 +17,7 @@ class UsersTableSeeder extends Seeder
     public function run(): void
     {
         $uuid = Str::random(20);
-        // $uuids = crypt($uuid, config('app.name'));
-        // $uuid = Hash::make($uuid, ['rounds' => 5, 'memory' => 100, 'time' => 1, 'threads' => 1, ]);
-        // dd(decrypt($uuids), $uuid, $uuids);
-        // dd($uuid);
+       
         $data = [
             'id' => 1,
             'email' => 'admin@admin.com',
@@ -30,6 +27,6 @@ class UsersTableSeeder extends Seeder
         ];
 
         \App\Models\User::insert($data);
-        UserHasUUID::create(['user_id' => $data['id'], 'orginal_std_id' => $uuid]);
+        UserHasUUID::create(['user_id' => $data['id'], 'orginal_std_id' => encrypt($uuid)]);
     }
 }

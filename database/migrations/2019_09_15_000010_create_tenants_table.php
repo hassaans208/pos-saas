@@ -17,9 +17,9 @@ class CreateTenantsTable extends Migration
     {
         Schema::create('tenants', function (Blueprint $table) {
             $table->string('id')->primary();
-            $table->unsignedBigInteger('plan_id');
+            $table->unsignedBigInteger('plan_id')->nullable();
             $table->foreign('plan_id')->references('id')->on('plans');
-            $table->string('ip_address');
+            $table->string('ip_address')->nullable();
             $table->enum('status', ['active', 'inactive', 'blocked', 'expired']);
             $table->timestamps();
             $table->json('data')->nullable();

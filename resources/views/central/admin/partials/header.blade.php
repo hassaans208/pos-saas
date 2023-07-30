@@ -1,5 +1,5 @@
 <nav class="bg-white border-gray-200 dark:bg-gray-900 h-12">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-6 py-2">
+    <div class="flex flex-wrap items-center justify-between mx-10 px-6 py-2">
         <button type="button"
             class="inline-flex items-center p-2 w-8 h-8 justify-center text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
             data-drawer-target="drawer-navigation" data-drawer-show="drawer-navigation" aria-controls="drawer-navigation">
@@ -23,33 +23,6 @@
                 <span class="sr-only">Open user menu</span>
                 <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="user photo">
             </button>
-            <!-- Dropdown menu -->
-            <div class="z-50 hidden my-4 mx-2 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
-                id="user-dropdown">
-                <div class="px-4 py-3">
-                    <span class="block text-sm text-gray-900 dark:text-white">Admin</span>
-                    <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">admin@admin.com</span>
-                </div>
-                <ul class="py-2 mx-2" aria-labelledby="user-menu-button">
-                    <li>
-                        <a href="#"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="#"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
-                    </li>
-                    <li>
-                        <a href="#"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Earnings</a>
-                    </li>
-                    <li>
-                        <a href="#"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign
-                            out</a>
-                    </li>
-                </ul>
-            </div>
             <!-- drawer init and show -->
             <!-- drawer init and toggle -->
             <button type="button"
@@ -78,6 +51,37 @@
                 </svg>
             </button>
 
+            <!-- Dropdown menu -->
+            <div class="z-50 hidden my-4 mx-2 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
+                id="user-dropdown">
+                <div class="px-4 py-3">
+                    <span class="block text-sm text-gray-900 dark:text-white">Admin</span>
+                    <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">admin@admin.com</span>
+                </div>
+                <ul class="py-2 mx-2" aria-labelledby="user-menu-button">
+                    <li>
+                        <a href="#"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
+                    </li>
+                    <li>
+                        <a href="#"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Earnings</a>
+                    </li>
+                    <li>
+                        <form id="logoutForm" action="{{route('logout')}}" method="POST" class="">
+                        @csrf
+
+                        </form>
+                        <button onclick="document.getElementById('logoutForm').submit()"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign
+                            out</button>
+                    </li>
+                </ul>
+            </div>
 
         </div>
         {{-- --menu-container --}}

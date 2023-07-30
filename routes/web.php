@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Central\MainController;
+use App\Http\Controllers\Central\TenantController;
 use App\Http\Controllers\Central\Theme\ThemeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +34,9 @@ Route::middleware('auth')->group(function () {
     Route::get('create-tenant/{tenant_name}', [MainController::class, 'create_tenant']);
 
     Route::get('dashboard', [MainController::class, 'index'])->name('dashboard');
+    
+    Route::resource('tenants', TenantController::class);
+
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

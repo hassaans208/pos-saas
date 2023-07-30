@@ -12,12 +12,14 @@ class Helper
 {
     const CENTRAL_ADMIN  = 1;
     const CENTRAL_COMPANY  = 2;
+    const TENANT_ADMIN  = 1;
+
 
     public function verifyRequest($callback)
     {
         $uuid = UserHasUUID::where('user_id', auth()->user()->id)->first();
-        // dd($uuid);
-        if (Hash::check($uuid->orginal_std_id, auth()->user()->std_id)) {
+
+        if (Hash::check(decrypt($uuid->orginal_std_id), auth()->user()->std_id)) {
             return $callback();
         } else {
             return response()->json(['Warning' => 'Invalid Hit!']);

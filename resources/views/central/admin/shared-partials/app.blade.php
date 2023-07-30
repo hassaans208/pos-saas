@@ -11,22 +11,22 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>{{ config('app.name', 'EnigmaEdge') }} | @yield('title')</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+    @vite(['resources/css/app.css','resources/sass/app.scss'])
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
     @stack('styles')
 </head>
 
 <body class="sb-nav-fixed bg-slate-100 dark:bg-slate-800">
-
-{{-- @include('central.admin.partials.toast') --}}
-
     @include('central.admin.partials.sidebar')
     @include('central.admin.partials.right-bar')
     @include('central.admin.partials.header')
+    <x-toast-message></x-toast-message>
     @yield('main')
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://kit.fontawesome.com/23d794b31c.js" crossorigin="anonymous"></script>
+    @vite(['resources/js/app.js'])
     @stack('scripts')
 </body>
 

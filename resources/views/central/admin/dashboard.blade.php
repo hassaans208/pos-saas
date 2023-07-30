@@ -1,4 +1,5 @@
 @extends('central.admin.partials.app')
+@section('title', 'Admin Panel')
 @section('body')
     <nav class="mb-4 mx-4" aria-label="Breadcrumb">
         <div class="flex flex-row justify-between">

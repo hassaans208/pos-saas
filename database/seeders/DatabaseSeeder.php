@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Tenant\Tenant;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,17 +21,17 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         $this->call([
-            // Tanent\CountriesTableSeeder::class,
-            // Tanent\StatesTableSeeder::class,
-            // Tanent\CitiesTableChunkOneSeeder::class,
-            // Tanent\CitiesTableChunkTwoSeeder::class,
-            // Tanent\CitiesTableChunkThreeSeeder::class,
-            // Tanent\CitiesTableChunkFourSeeder::class,
-            // Tanent\CitiesTableChunkFiveSeeder::class,
-            // \Database\Seeders\Tenant\UsersTableSeeder::class,
-            // \Database\Seeders\Tenant\ThemeTableSeeder::class,
-            UsersTableSeeder::class,
-            ThemeTableSeeder::class,
+            \Database\Seeders\Tenant\UsersTableSeeder::class,
+            \Database\Seeders\Tenant\ThemeTableSeeder::class,
+            \Database\Seeders\Tenant\CountriesTableSeeder::class,
+            \Database\Seeders\Tenant\StatesTableSeeder::class,
+            \Database\Seeders\Tenant\CitiesTableChunkOneSeeder::class,
+            \Database\Seeders\Tenant\CitiesTableChunkTwoSeeder::class,
+            \Database\Seeders\Tenant\CitiesTableChunkThreeSeeder::class,
+            \Database\Seeders\Tenant\CitiesTableChunkFourSeeder::class,
+            \Database\Seeders\Tenant\CitiesTableChunkFiveSeeder::class,
+            // UsersTableSeeder::class,
+            // ThemeTableSeeder::class,
         ]);
         // \App\Models\Tenant\Tenant::all()->runForEach(function () {
         //     \App\Models\User::factory(1)->create();

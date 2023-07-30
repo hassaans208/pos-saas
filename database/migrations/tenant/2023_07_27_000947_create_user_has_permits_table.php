@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('user_has_permits', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('permit_id');
+            $table->unsignedBigInteger('permit_id')->nullable();
             $table->uuid('user_id');
             $table->foreign('permit_id')->references('id')->on('permits')->cascadeOnDelete();
-            $table->foreign('user_id')->references('std_id')->on('permits')->cascadeOnDelete();
+            $table->foreign('user_id')->references('std_id')->on('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }

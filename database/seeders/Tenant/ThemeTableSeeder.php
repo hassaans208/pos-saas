@@ -13,10 +13,11 @@ class ThemeTableSeeder extends Seeder
      */
     public function run(): void
     {
+        $user = \App\Models\Tenant\User::findOrFail(1);
         $data = [
             'id' => 1,
             'theme' => 'dark',
-            'user_id' => 1
+            'user_id' => $user->std_id
         ];
 
         Theme::insert($data);

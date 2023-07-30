@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Central;
 
 use App\Helper\Helper;
 use App\Http\Controllers\Controller;
+// use App\Models\Tenant;
 use App\Models\Tenant\Tenant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class MainController extends Controller
 {
@@ -29,16 +31,19 @@ class MainController extends Controller
             'email' => 'required',
             'password' => 'prohibited',
         ];
+        // dd($request->ip());
+        // $tenant1 = Tenant::create(['id' => 'mirza-autos', 'ip_address'=> $request->ip()]);
+        // $tenant1->domains()->create(['domain' => 'mirza-autos.localhost']);
         // $sanitizer = new Sanitizer;
         // Execute the sanitizer.
         // $sanitizer->sanitize($rules, $data);
         // dd($request->whereIn($this->params));
-        foreach ($request as $key => $req) {
-            if ($key == 'attribute')
-                dd($req);
-            if ($key == 'query')
-                dd($req);
-        }
+        // foreach ($request as $key => $req) {
+        //     if ($key == 'attribute')
+        //         dd($req);
+        //     if ($key == 'query')
+        //         dd($req);
+        // }
         return $this->varification->executeValid($request, function () {
             return view('central.admin.dashboard');
         });

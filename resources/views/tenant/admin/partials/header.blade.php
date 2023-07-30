@@ -1,5 +1,5 @@
 <nav class="bg-white border-gray-200 dark:bg-gray-900 h-12">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-6 py-2">
+    <div class="flex flex-wrap items-center justify-between mx-16 px-6 py-2">
         <button type="button"
             class="inline-flex items-center p-2 w-8 h-8 justify-center text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
             data-drawer-target="drawer-navigation" data-drawer-show="drawer-navigation" aria-controls="drawer-navigation">

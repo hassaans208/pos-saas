@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('themes', function (Blueprint $table) {
+        Schema::create('user_has_u_u_i_d_s', function (Blueprint $table) {
             $table->id();
-            $table->enum('theme', ['dark', 'light']);
-            $table->string('user_id', 300);
-            $table->foreign('user_id')->references('std_id')->on('users')->cascadeOnDelete();
+            // $table->integer('user_id');
+            $table->foreignId('user_id')->constrained()->references('id')->on('users')->cascadeOnDelete();
+            $table->string('orginal_std_id', 300)->unique();
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('theme');
+        Schema::dropIfExists('user_has_u_u_i_d_s');
     }
 };

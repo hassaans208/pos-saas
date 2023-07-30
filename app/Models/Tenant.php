@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Tenant;
+namespace App\Models;
 
 use Stancl\Tenancy\Database\Models\Tenant as BaseTenant;
 use Stancl\Tenancy\Contracts\TenantWithDatabase;
@@ -11,7 +11,9 @@ class Tenant extends BaseTenant implements TenantWithDatabase
 {
     use HasDatabase, HasDomains;
 
-
+    protected $fillable = [
+        'ip_address'
+    ];
     public function company(){
         return $this->belongsTo(User::class);
     }
@@ -23,5 +25,9 @@ class Tenant extends BaseTenant implements TenantWithDatabase
             'plan',
             'configuration',
         ];
+    }
+
+    public function user(){
+        return $this->hasOne(User::class, 'std_id');
     }
 }

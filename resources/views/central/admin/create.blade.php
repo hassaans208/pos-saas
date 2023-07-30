@@ -6,7 +6,6 @@
                 <h2 class="text-3xl font-semibold dark:text-white text-black">Create Manager</h2>
             </div>
             <div>
-
                 <ol class="inline-flex items-center space-x-1 md:space-x-3">
                     <li class="inline-flex items-center">
                         <a href="#"
