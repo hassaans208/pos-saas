@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
-            $table->uuid('user_id'); // Workshop owner or employee assigned to the appointment
+            $table->unsignedBigInteger('user_id'); // Workshop owner or employee assigned to the appointment
             $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('automobile_id');
             $table->unsignedBigInteger('service_id');
             $table->dateTime('appointment_date');
-            $table->foreign('user_id')->references('std_id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->foreign('automobile_id')->references('id')->on('automobiles')->onDelete('cascade');
             $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');

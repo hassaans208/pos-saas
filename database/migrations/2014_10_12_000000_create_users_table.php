@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('std_id', 300)->unique();
             $table->string('email')->unique();
+            $table->string('tenant_id')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

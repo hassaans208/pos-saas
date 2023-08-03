@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->enum('payable_type', ['part', 'labour']);
             $table->decimal('cost', 2);
+            $table->float('vat_percentage', 2);
             $table->timestamps();
         });
     }

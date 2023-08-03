@@ -13,15 +13,16 @@ return new class extends Migration
     {
         Schema::create('automobiles', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('make');
             $table->string('model');
             $table->integer('year');
             $table->integer('chasis_no');
             $table->integer('color');
+            $table->string('car_number');
             // Add more vehicle details as needed (e.g., VIN, license plate)
 
-            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

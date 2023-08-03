@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
+            $table->string('workshop_name')->nullable();
+            $table->string('workshop_address')->nullable();
             // Add more outsource receiver details as needed (e.g., address, company information)
             $table->timestamps();
         });

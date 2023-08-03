@@ -27,11 +27,9 @@ class TableLayout extends Component
     public $docx;
     public $reload;
     public $action;
+    public $options;
 
-
-
-
-    public function __construct($collection, $title, $head, $delete, $edit, $row, $createRoute, $deleteRoute, $editRoute, $create,$print, $excel, $pdf,$docx, $reload, $action)
+    public function __construct($collection, $title, $head, $delete, $edit, $row, $createRoute, $deleteRoute, $editRoute, $create,$print, $excel, $pdf,$docx, $reload, $action, $options)
     {
         $this->collection = $collection; 
         $this->title = $title; 
@@ -49,6 +47,9 @@ class TableLayout extends Component
         $this->docx = $docx; 
         $this->reload = $reload; 
         $this->action = $action; 
+        // Search Options
+        $this->options = $options;
+
     }
 
     /**

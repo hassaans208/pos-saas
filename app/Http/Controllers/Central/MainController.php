@@ -5,14 +5,14 @@ namespace App\Http\Controllers\Central;
 use App\Helper\Helper;
 use App\Http\Controllers\Controller;
 // use App\Models\Tenant;
-use App\Models\Tenant\Tenant;
+use App\Models\Tenant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class MainController extends Controller
 {
-    public  $varification;
-    public  $params = array('id');
+    public $varification;
+    public $params = ['id'];
     public function __construct($varification = new Helper())
     {
         $this->varification = $varification;
@@ -20,7 +20,6 @@ class MainController extends Controller
 
     public function index(Request $request)
     {
-
         $data = [
             'name' => 'Hassaan',
             'email' => 'Hassaan',
@@ -51,7 +50,7 @@ class MainController extends Controller
 
     public function create_tenant($tenant_name)
     {
-
+        // dd(Tenant::get());
         $tenant = Tenant::create([
             'id' => $tenant_name,
             // 'data' => "{'plan':'free', 'configuration':'random'}",

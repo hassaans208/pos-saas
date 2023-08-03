@@ -13,11 +13,15 @@ return new class extends Migration
     {
         Schema::create('surveyors', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('country_id')->nullable();
+            $table->foreign('country_id')->references('id')->on('countries')->cascadeOnDelete();
+            $table->unsignedBigInteger('state_id')->nullable();
+            $table->foreign('state_id')->references('id')->on('states')->cascadeOnDelete();
+            $table->unsignedBigInteger('city_id')->nullable();
+            $table->foreign('city_id')->references('id')->on('cities')->cascadeOnDelete();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->unsignedBigInteger('insurance_company_id'); // Foreign key to link surveyors to their respective insurance companies
-            $table->string('name');
-            $table->string('email')->nullable();
-            $table->string('phone')->nullable();
-            // Add more fields as needed to store additional information about surveyors
             $table->foreign('insurance_company_id')->references('id')->on('insurance_companies')->onDelete('cascade');
             $table->timestamps();
         });

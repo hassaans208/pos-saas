@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('full_name');
             $table->string('phone_number')->nullable();
-            $table->string('role');
+            $table->enum('role', ['admin', 'manager', 'staff', 'customer', 'vendor', 'insurance_company', 'surveyor']);
             $table->string('workshop_address')->nullable();
             $table->string('postal_code')->nullable();
             $table->timestamp('email_verified_at')->nullable();

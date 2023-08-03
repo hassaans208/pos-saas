@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('vendors', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('vendor_description')->nullable();
             $table->string('contact_name')->nullable();
-            $table->string('email')->nullable();
-            $table->string('phone')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             // Add more vendor details as needed (e.g., address, product catalog)
             $table->timestamps();
         });

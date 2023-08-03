@@ -13,6 +13,16 @@ return new class extends Migration
     {
         Schema::create('staff_users', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('country_id')->nullable();
+            $table->foreign('country_id')->references('id')->on('countries')->cascadeOnDelete();
+            $table->unsignedBigInteger('state_id')->nullable();
+            $table->foreign('state_id')->references('id')->on('states')->cascadeOnDelete();
+            $table->unsignedBigInteger('city_id')->nullable();
+            $table->foreign('city_id')->references('id')->on('cities')->cascadeOnDelete();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->unsignedBigInteger('job_title_id')->nullable();
+            $table->foreign('job_title_id')->references('id')->on('jobs')->cascadeOnDelete();
             $table->timestamps();
         });
     }

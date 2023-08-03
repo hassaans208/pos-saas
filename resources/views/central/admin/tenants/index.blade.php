@@ -19,6 +19,7 @@
 :pdf="$table['pdf']"
 :reload="$table['reload']"
 :docx="$table['docx']"
+:options="$table['options']"
 
 >
 </x-table-layout>

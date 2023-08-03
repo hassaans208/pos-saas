@@ -14,12 +14,31 @@ return new class extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('appointment_id');
             $table->decimal('amount', 8, 2);
+            $table->uuid('transaction_id')->unique();
+
             $table->boolean('paid')->default(false);
-            $table->enum('payment_method', ['cash', 'cheque'])->default('cash');
+            $table->enum('payment_method', ['cash', 'cheque', 'online'])->default('cash');
+            $table->enum('invoice_type', ['insurance', 'direct_client'])->default('direct_client');
+            $table->boolean('intervals')->default(false);
             $table->date('paid_on')->default(null)->nullable();
+            $table->enum('job_type', ['maintainence', 'job'])->default('direct_client');
+            $table->string('services')->nullable();
+            $table->string('account_number')->nullable();
+            $table->string('advance_payment')->nullable();
+            $table->string('depreciation')->nullable();
+
+            $table->unsignedBigInteger('transaction_source_id');
+            $table->foreign('transaction_source_id')->references('id')->on('transaction_sources')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id'); // Workshop owner or employee assigned to the appointment
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('automobile_id');
+            $table->foreign('automobile_id')->references('id')->on('automobiles')->onDelete('cascade');
+            $table->unsignedBigInteger('appointment_id');
             $table->foreign('appointment_id')->references('id')->on('appointments')->onDelete('cascade');
+            $table->unsignedBigInteger('third_party_agency_id');
+            $table->foreign('third_party_agency_id')->references('id')->on('third_party_agencies')->onDelete('cascade');
+
 
             $table->timestamps();
         });
