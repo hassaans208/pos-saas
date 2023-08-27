@@ -104,7 +104,7 @@ class ThirdPartyAgencyController extends Controller
         ])->validated();
 
         try {
-            ThirdPartyAgency::create([
+            ThirdPartyAgency::where('id', $id)->update([
                 'name' => $validator['name'],
                 'email' => $validator['email'],
                 'phone' => $validator['phone'],

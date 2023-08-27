@@ -11,7 +11,7 @@ use App\Models\Tenant\User as TenantUser;
 use App\Models\Tenant\UserHasUUID as TenantUserHasUUID;
 use App\Models\User;
 use App\Models\UserHasUUID;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\Facades\DataTables;
@@ -111,7 +111,7 @@ class TenantController extends Controller
             ->validate();
 
         $validatedRequest = $this->varification->verifyRequest($validatedRequest, $request);
-                // dd($validatedRequest);
+        // dd($validatedRequest);
         if (!$validatedRequest) {
             return response()->json(['Warning' => 'Invalid Hit!']);
         }

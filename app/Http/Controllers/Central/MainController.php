@@ -6,7 +6,7 @@ use App\Helper\Helper;
 use App\Http\Controllers\Controller;
 // use App\Models\Tenant;
 use App\Models\Tenant;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
 
 class MainController extends Controller

@@ -146,7 +146,7 @@ class StaffUserController extends Controller
                 ]);
             }
 
-            StaffUser::create([
+            StaffUser::where('user_id', $user->id)->update([
                 'user_id' => $user->id,
                 'country_id' => $validator['country_id'],
                 'state_id' => $validator['state_id'],

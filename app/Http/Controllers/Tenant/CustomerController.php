@@ -15,32 +15,87 @@ use Illuminate\Support\Facades\Request;
 class CustomerController extends Controller
 {
 
-    public $varification = new  Helper();
-    public function index()
+    public $varification;
+
+    public function __construct($varification = new Helper())
     {
-        return view('tenant.customers.index');
+        $this->varification = $varification;
     }
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(Request $request)
+    {
+
+        // dd('some');
+        // return $this->varification->executeValid($request, function () {
+        $breadcrumb = [
+            [
+                'name' => 'Dashboard',
+                'route' => 'dashboard',
+            ],
+            [
+                'name' => 'Clients',
+                'route' => 'tenant.automobiles.index',
+            ],
+        ];
+        $customers = User::with('customer')->where('role', Helper::TENANT_CUSTOMER)->paginate(Helper::PAGINATION);
+
+        $table = [
+            'title' => 'Clients',
+            'collection' => $customers,
+            'head' => ['Full Name', 'User Name', 'Email', 'Phone', 'Insurance Company', 'Car Count', 'Last Surveyor', 'Work History', 'Action'],
+            'row' => ['car_number', 'color', 'chasis_no', 'year', 'model', 'relation' => ['customer', 'name']],
+            'edit' => true,
+            'create' => true,
+            'delete' => true,
+            'delete_route' => '',
+            'edit_route' => '',
+            'create_route' => 'tenant.clients.create',
+            'action' => true,
+            'print' => true,
+            'excel' => true,
+            'pdf' => true,
+            'docx' => true,
+            'reload' => true,
+            'options' => [['label' => 'Accident', 'value' => 'accident'], ['label' => 'Damage', 'value' => 'damage']],
+        ];
+
+        return view('tenant.client.index', compact('breadcrumb', 'table'));
+        // });
+        // return $dataTable->render('central.admin.tenants.index');
+    }
+
     public function show($id)
     {
         $id = decrypt($id);
 
-        $users = User::with('customers')->findOrFail($id);
+        $users = Automobile::with('customers')->findOrFail($id);
 
-        return view('tenant.customers.show', compact(
+        return view('tenant.automobiles.show', compact(
             'users'
         ));
     }
     public function create()
     {
-        $countries  = Country::select('name', 'id')->get();
-        $states  = State::select('name', 'id')->get();
-        $cities  = City::select('name', 'id')->get();
 
-        return view('tenant.customers.create', compact(
-            'countries',
-            'states',
-            'cities'
-        ));
+        $breadcrumb = [
+            [
+                'name' => 'Dashboard',
+                'route' => 'tenant.dashboard',
+            ],
+            [
+                'name' => 'Clients',
+                'route' => 'tenant.automobiles.index',
+            ],
+            [
+                'name' => 'Create a New Client',
+                'route' => 'tenant.clients.create',
+            ],
+        ];
+
+        return view('tenant.client.create', compact('breadcrumb'));
     }
     public function store(Request $request)
     {
@@ -144,7 +199,7 @@ class CustomerController extends Controller
                 ]);
             }
 
-            Customer::create([
+            Customer::where('user_id', $user->id)->update([
                 'user_id' => $user->id,
                 'country_id' => $validator['country_id'],
                 'state_id' => $validator['state_id'],

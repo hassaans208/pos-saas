@@ -9,6 +9,7 @@ use App\Models\Tenant\City;
 use App\Models\Tenant\Country;
 use App\Models\Tenant\Customer;
 use App\Models\Tenant\State;
+use App\Models\Tenant\Tenant;
 use App\Models\Tenant\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Request;
@@ -16,11 +17,58 @@ use Illuminate\Support\Facades\Request;
 class AutomobileController extends Controller
 {
 
-    public $varification = new  Helper();
-    public function index()
+    public $varification;
+
+    public function __construct($varification = new Helper())
     {
-        return view('tenant.automobiles.index');
+        $this->varification = $varification;
     }
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(Request $request)
+    {
+
+        // dd('some');
+        // return $this->varification->executeValid($request, function () {
+        $breadcrumb = [
+            [
+                'name' => 'Dashboard',
+                'route' => 'tenant.dashboard',
+            ],
+            [
+                'name' => 'Automobile',
+                'route' => 'tenant.automobiles.index',
+            ],
+        ];
+        $automobiles = Automobile::with('user')->paginate(Helper::PAGINATION);
+
+        $table = [
+            'title' => 'Automobiles',
+            'collection' => $automobiles,
+            'head' => ['Car Number', 'Color', 'Chasis Number', 'Year', 'Model', 'Customer Name', 'Action'],
+            'row' => ['car_number', 'color', 'chasis_no', 'year', 'model', 'relation' => ['customer', 'name']],
+            'edit' => true,
+            'create' => true,
+            'delete' => true,
+            'delete_route' => '',
+            'edit_route' => '',
+            'create_route' => 'tenant.automobiles.create',
+            'action' => true,
+            'print' => true,
+            'excel' => true,
+            'pdf' => true,
+            'docx' => true,
+            'reload' => true,
+            'options' => [['label' => 'Accident', 'value' => 'accident'], ['label' => 'Damage', 'value' => 'damage']],
+        ];
+
+        return view('tenant.automobile.index', compact('breadcrumb', 'table'));
+        // });
+        // return $dataTable->render('central.admin.tenants.index');
+    }
+
     public function show($id)
     {
         $id = decrypt($id);
@@ -34,7 +82,22 @@ class AutomobileController extends Controller
     public function create()
     {
 
-        return view('tenant.automobiles.create');
+        $breadcrumb = [
+            [
+                'name' => 'Dashboard',
+                'route' => 'dashboard',
+            ],
+            [
+                'name' => 'Automobiles',
+                'route' => 'tenant.automobiles.index',
+            ],
+            [
+                'name' => 'Create a New Automobile',
+                'route' => 'tenant.automobiles.create',
+            ],
+        ];
+
+        return view('tenant.automobile.create', compact('breadcrumb'));
     }
     public function store(Request $request)
     {

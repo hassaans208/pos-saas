@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->enum('theme', ['dark', 'light']);
             $table->string('user_id', 300);
-            $table->foreign('user_id')->references('std_id')->on('users')->cascadeOnDelete();
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }

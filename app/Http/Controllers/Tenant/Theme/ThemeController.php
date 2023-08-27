@@ -15,7 +15,6 @@ class ThemeController extends Controller
 
     public function change_theme(Request $request)
     {
-        // dd('some');
         $theme = Theme::firstOrNew(['user_id' => auth()->user()->std_id]);
         $theme->theme = $theme->theme == 'light' ? 'dark' : 'light';
         $theme->save();
