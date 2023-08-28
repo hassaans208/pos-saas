@@ -118,7 +118,7 @@ class TenantController extends Controller
         }
 
         // return $this->varification->executeValid($validatedRequest, function () use ($validatedRequest) {
-            // DB::beginTransaction();
+            DB::beginTransaction();
             $uuid = Str::random(20);
 
             $users = User::create([
@@ -137,7 +137,7 @@ class TenantController extends Controller
 
             $tenant->domains()->create(['domain' => $validatedRequest['tenant_id'] . Helper::ACTIVE_HOST]);
 
-            // DB::commit();
+            DB::commit();
             return redirect()
                 ->route('tenants.index')
                 ->with('success', 'Tenant Created Successfully!');

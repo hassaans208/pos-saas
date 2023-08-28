@@ -22,7 +22,7 @@ return new class extends Migration
             $table->enum('invoice_type', ['insurance', 'direct_client'])->default('direct_client');
             $table->boolean('intervals')->default(false);
             $table->date('paid_on')->default(null)->nullable();
-            $table->enum('job_type', ['maintainence', 'job'])->default('direct_client');
+            $table->enum('job_type', ['maintainence', 'job'])->default('job');
             $table->string('services')->nullable();
             $table->string('account_number')->nullable();
             $table->string('advance_payment')->nullable();
