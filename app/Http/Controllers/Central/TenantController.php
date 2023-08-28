@@ -111,13 +111,13 @@ class TenantController extends Controller
             ])
             ->validate();
 
-        $validatedRequest = $this->varification->verifyRequest($validatedRequest, $request);
+        // $validatedRequest = $this->varification->verifyRequest($validatedRequest, $request);
         // dd($validatedRequest);
         if (!$validatedRequest) {
             return response()->json(['Warning' => 'Invalid Hit!']);
         }
 
-        return $this->varification->executeValid($validatedRequest, function () use ($validatedRequest) {
+        // return $this->varification->executeValid($validatedRequest, function () use ($validatedRequest) {
             // DB::beginTransaction();
             $uuid = Str::random(20);
 
@@ -141,7 +141,7 @@ class TenantController extends Controller
             return redirect()
                 ->route('tenants.index')
                 ->with('success', 'Tenant Created Successfully!');
-        });
+        // });
     }
 
     /**
