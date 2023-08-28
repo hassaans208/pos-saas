@@ -43,9 +43,9 @@ class MainController extends Controller
         //     if ($key == 'query')
         //         dd($req);
         // }
-        return $this->varification->executeValid($request, function () {
+        // return $this->varification->executeValid($request, function () {
             return view('central.admin.dashboard');
-        });
+        // });
     }
 
     public function create_tenant($tenant_name)
@@ -55,7 +55,7 @@ class MainController extends Controller
             'id' => $tenant_name,
             // 'data' => "{'plan':'free', 'configuration':'random'}",
         ]);
-        $tenant->domains()->create(['domain' => $tenant_name . '.localhost']);
+        $tenant->domains()->create(['domain' => $tenant_name . '.enigmaedgeinnovation.tech']);
 
         return response()->json($tenant);
     }

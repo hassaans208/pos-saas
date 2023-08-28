@@ -20,7 +20,18 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        $this->call([
+        $this->call(
+            //$this->tenantSeeders(),
+            $this->centralSeeders()
+        );
+        // \App\Models\Tenant\Tenant::all()->runForEach(function () {
+        //     \App\Models\User::factory(1)->create();
+        // });
+    }
+
+    public function tenantSeeders()
+    {
+        return [
             \Database\Seeders\Tenant\UsersTableSeeder::class,
             \Database\Seeders\Tenant\ThemeTableSeeder::class,
             \Database\Seeders\Tenant\CountriesTableSeeder::class,
@@ -29,19 +40,21 @@ class DatabaseSeeder extends Seeder
             \Database\Seeders\Tenant\CitiesTableChunkTwoSeeder::class,
             \Database\Seeders\Tenant\CitiesTableChunkThreeSeeder::class,
             \Database\Seeders\Tenant\CitiesTableChunkFourSeeder::class,
-            \Database\Seeders\Tenant\CitiesTableChunkFiveSeeder::class,
-            // \Database\Seeders\UsersTableSeeder::class,
-            // \Database\Seeders\ThemeTableSeeder::class,
-            // \Database\Seeders\CountriesTableSeeder::class,
-            // \Database\Seeders\StatesTableSeeder::class,
-            // \Database\Seeders\CitiesTableChunkOneSeeder::class,
-            // \Database\Seeders\CitiesTableChunkTwoSeeder::class,
-            // \Database\Seeders\CitiesTableChunkThreeSeeder::class,
-            // \Database\Seeders\CitiesTableChunkFourSeeder::class,
-            // \Database\Seeders\CitiesTableChunkFiveSeeder::class,
-        ]);
-        // \App\Models\Tenant\Tenant::all()->runForEach(function () {
-        //     \App\Models\User::factory(1)->create();
-        // });
+            \Database\Seeders\Tenant\CitiesTableChunkFiveSeeder::class
+        ];
+    }
+    public function centralSeeders()
+    {
+        return [
+            \Database\Seeders\UsersTableSeeder::class,
+            \Database\Seeders\ThemeTableSeeder::class,
+            \Database\Seeders\CountriesTableSeeder::class,
+            \Database\Seeders\StatesTableSeeder::class,
+            \Database\Seeders\CitiesTableChunkOneSeeder::class,
+            \Database\Seeders\CitiesTableChunkTwoSeeder::class,
+            \Database\Seeders\CitiesTableChunkThreeSeeder::class,
+            \Database\Seeders\CitiesTableChunkFourSeeder::class,
+            \Database\Seeders\CitiesTableChunkFiveSeeder::class,
+        ];
     }
 }
