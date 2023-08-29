@@ -16,14 +16,16 @@ class InputBox extends Component
      public $value;
      public $required;
      public $label;
+     public $pattern;
 
-     
-    public function __construct( $name, ?string $value = null, $required, $label)
+
+    public function __construct( $name, ?string $value = null ,  $required, $label, $pattern = null)
     {
         $this->name = $name;
         $this->value = $value;
         $this->required = $required;
         $this->label = $label;
+        $this->pattern = $pattern;
     }
 
     /**

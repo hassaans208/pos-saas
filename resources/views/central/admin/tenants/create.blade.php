@@ -29,7 +29,7 @@
 								<div></div>
 								<hr>
 								<hr>
-								<x-input-box name="tenant_id" required="1" value="" label="Tenant Sub Domain"></x-input-box>
+								<x-input-box name="tenant_id" required="1" value="" pattern="[A-Za-z0-9]*" label="Tenant Sub Domain"></x-input-box>
 
 				</x-from-layout>
 
