@@ -34,6 +34,7 @@ Route::middleware([
     })->name('tenant.dashboard');
 
     Route::get('/', function () {
+        dd(tenant('id'));
         return view('tenant.admin.index');
     });
     Route::get('/create', function () {
