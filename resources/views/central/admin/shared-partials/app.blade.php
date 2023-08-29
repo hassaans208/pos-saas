@@ -1,5 +1,11 @@
 @php
-    $theme = \App\Models\Theme::where('user_id', auth()->user()->id)->first();
+    $theme = \App\Models\Theme::firstOrNew(['user_id' => auth()->user() ? auth()->user()->id : '']);
+    if (!$theme && auth()->user()) {
+        $theme->theme = $theme->theme == 'light' ? 'dark' : 'light';
+        $theme->save();
+        # code...
+    }
+    // dd($theme);
 @endphp
 <!DOCTYPE html>
 <html lang="en" id="html" data-mode="{{ $theme->theme }}">
