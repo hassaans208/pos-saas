@@ -1,5 +1,5 @@
 @php
-    $theme = \App\Models\Theme::where('user_id', auth()->user()->std_id)->first();
+    $theme = \App\Models\Theme::where('user_id', auth()->user()->id)->first();
 @endphp
 <!DOCTYPE html>
 <html lang="en" id="html" data-mode="{{ $theme->theme }}">
