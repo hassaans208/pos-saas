@@ -1,6 +1,6 @@
 @php
-    $theme = \App\Models\Tenant\Theme::firstOrNew(['user_id' => auth()->user()->id]);
-    if (!$theme) {
+    $theme = \App\Models\Tenant\Theme::firstOrNew(['user_id' => auth()->user() ? auth()->user()->id : '']);
+    if (!$theme && auth()->user()) {
         $theme->theme = $theme->theme == 'light' ? 'dark' : 'light';
         $theme->save();
         # code...
@@ -8,7 +8,7 @@
     // dd($theme);
 @endphp
 <!DOCTYPE html>
-<html lang="en" id="html" data-mode="{{ $theme->theme }}">
+<html lang="en" id="html" data-mode="{{ $theme ? $theme->theme : 'light' }}">
 
 <head>
     <meta charset="utf-8" />

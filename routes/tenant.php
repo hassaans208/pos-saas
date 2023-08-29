@@ -36,7 +36,7 @@ Route::middleware([
     Route::get('/', function () {
         // dd(tenant('id'));
         return view('tenant.admin.index');
-    });
+    })->middleware('auth');
     Route::get('/create', function () {
         return view('tenant.admin.create');
     });
