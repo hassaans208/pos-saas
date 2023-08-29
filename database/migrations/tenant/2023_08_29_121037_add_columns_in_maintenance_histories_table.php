@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('themes', function (Blueprint $table) {
-            $table->id();
-            $table->enum('theme', ['dark', 'light']);
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->timestamps();
+        Schema::table('maintenance_histories', function (Blueprint $table) {
+            //
         });
     }
 
@@ -25,6 +21,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('theme');
+        Schema::table('maintenance_histories', function (Blueprint $table) {
+            $table->unsignedBigInteger('maintanence_type_id');
+            $table->foreign('maintanence_type_id')->references('id')->on('maintanence_types')->onDelete('cascade');
+        });
     }
 };

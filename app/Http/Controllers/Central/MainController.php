@@ -6,7 +6,7 @@ use App\Helper\Helper;
 use App\Http\Controllers\Controller;
 // use App\Models\Tenant;
 use App\Models\Tenant;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class MainController extends Controller
@@ -43,6 +43,7 @@ class MainController extends Controller
         //     if ($key == 'query')
         //         dd($req);
         // }
+        // dd(Helper::getHost($request));
         // return $this->varification->executeValid($request, function () {
             return view('central.admin.dashboard');
         // });

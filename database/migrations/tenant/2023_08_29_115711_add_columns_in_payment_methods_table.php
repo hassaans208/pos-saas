@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('themes', function (Blueprint $table) {
-            $table->id();
-            $table->enum('theme', ['dark', 'light']);
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->timestamps();
+        Schema::table('payment_methods', function (Blueprint $table) {
+            $table->unsignedBigInteger('system_method_id')->nullable();
+            $table->foreign('system_method_id')->references('id')->on('system_methods');
         });
     }
 
@@ -25,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('theme');
+        Schema::table('payment_methods', function (Blueprint $table) {
+            //
+        });
     }
 };

@@ -135,7 +135,7 @@ class TenantController extends Controller
                 'id' => $validatedRequest['tenant_id'],
             ]);
 
-            $tenant->domains()->create(['domain' => $validatedRequest['tenant_id'] . Helper::ACTIVE_HOST]);
+            $tenant->domains()->create(['domain' => $validatedRequest['tenant_id'] . Helper::getHost($request)]);
 
             DB::commit();
             return redirect()

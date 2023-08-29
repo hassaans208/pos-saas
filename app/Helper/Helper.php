@@ -12,7 +12,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class Helper
 {
-    const ACTIVE_HOST = '.localhost';
+    const ACTIVE_HOST_LOCAL = '.localhost';
+    const ACTIVE_HOST_PRODUCTION = '.enigmaedgeinnovation.tech';
     const PAGINATION = 10;
     const CENTRAL_ADMIN = 1;
     const CENTRAL_COMPANY = 2;
@@ -78,5 +79,10 @@ class Helper
                     ->with('error', $e->getMessage() . ': contact the administrator');
             }
         });
+    }
+
+    public static function getHost(Request $request): string
+    {
+        return $request->secure() ? self::ACTIVE_HOST_PRODUCTION : self::ACTIVE_HOST_LOCAL;
     }
 }

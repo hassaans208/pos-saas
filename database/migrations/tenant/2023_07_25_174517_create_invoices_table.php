@@ -27,19 +27,12 @@ return new class extends Migration
             $table->string('account_number')->nullable();
             $table->string('advance_payment')->nullable();
             $table->string('depreciation')->nullable();
-
-            $table->unsignedBigInteger('transaction_source_id');
-            $table->foreign('transaction_source_id')->references('id')->on('transaction_sources')->onDelete('cascade');
             $table->unsignedBigInteger('user_id'); // Workshop owner or employee assigned to the appointment
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('automobile_id');
             $table->foreign('automobile_id')->references('id')->on('automobiles')->onDelete('cascade');
             $table->unsignedBigInteger('appointment_id');
             $table->foreign('appointment_id')->references('id')->on('appointments')->onDelete('cascade');
-            $table->unsignedBigInteger('third_party_agency_id');
-            $table->foreign('third_party_agency_id')->references('id')->on('third_party_agencies')->onDelete('cascade');
-
-
             $table->timestamps();
         });
     }

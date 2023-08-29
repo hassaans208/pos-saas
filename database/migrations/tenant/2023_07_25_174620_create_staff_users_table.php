@@ -21,8 +21,6 @@ return new class extends Migration
             $table->foreign('city_id')->references('id')->on('cities')->cascadeOnDelete();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->unsignedBigInteger('job_title_id')->nullable();
-            $table->foreign('job_title_id')->references('id')->on('jobs')->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -17,8 +17,6 @@ return new class extends Migration
             $table->dateTime('notify_date');
             $table->unsignedBigInteger('automobile_id');
             $table->foreign('automobile_id')->references('id')->on('automobiles')->onDelete('cascade');
-            $table->unsignedBigInteger('maintanence_type_id');
-            $table->foreign('maintanence_type_id')->references('id')->on('maintanence_types')->onDelete('cascade');
             $table->unsignedBigInteger('service_id');
             $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
             $table->unsignedBigInteger('user_id'); // Workshop owner or employee assigned to the appointment
