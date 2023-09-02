@@ -12,10 +12,10 @@ export default defineConfig({
             refresh: true,
         }),
     ],
-    // server: {
-    //     hmr: {
-    //        port: '',
-    //        host: 'enigmaedgeinnovation.tech',
-    //    },
-    // }
+    server: {
+        hmr: {
+           port: '',
+           host: 'enigmaedgeinnovation.tech',
+       },
+    }
 });

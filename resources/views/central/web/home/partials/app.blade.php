@@ -1,12 +1,14 @@
 @php
-    $theme = \App\Models\Theme::firstOrNew(['user_id' => auth()->user() ? auth()->user()->id : '']);
+    $theme = \App\Models\Tenant\Theme::firstOrNew(['user_id' => auth()->user() ? auth()->user()->id : '']);
     if (!$theme && auth()->user()) {
         $theme->theme = $theme->theme == 'light' ? 'dark' : 'light';
         $theme->save();
+        # code...
     }
+    // dd($theme);
 @endphp
 <!DOCTYPE html>
-<html lang="en" id="html" data-mode="{{ $theme->theme }}">
+<html lang="en" id="html" data-mode="{{ $theme ? $theme->theme : 'light' }}">
 
 <head>
     <meta charset="utf-8" />
@@ -15,17 +17,21 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>{{ config('app.name', 'EnigmaEdge') }} | @yield('title')</title>
-    @vite(['resources/css/app.css','resources/sass/app.scss'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+
     @stack('styles')
 </head>
 
 <body class="sb-nav-fixed bg-slate-100 dark:bg-slate-800">
-    @include('central.admin.partials.sidebar')
-    @include('central.admin.partials.right-bar')
-    @include('central.admin.partials.header')
+
+    {{-- @include('tenant.home.partials.sidebar') --}}
+    {{-- @include('tenant.home.partials.right-bar') --}}
+    @include('central.web.home.partials.header')
     <x-toast-message></x-toast-message>
     @yield('main')
+    @include('central.web.home.partials.footer')
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
