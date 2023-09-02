@@ -17,7 +17,7 @@ class ThemeTableSeeder extends Seeder
         $data = [
             'id' => 1,
             'theme' => 'dark',
-            'user_id' => $user->std_id
+            'user_id' => $user->id
         ];
 
         Theme::insert($data);
