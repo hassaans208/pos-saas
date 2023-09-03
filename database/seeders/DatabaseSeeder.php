@@ -21,8 +21,8 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         $this->call(
-            //$this->tenantSeeders()
-            $this->centralSeeders()
+            $this->tenantSeeders()
+            //$this->centralSeeders()
         );
         // \App\Models\Tenant\Tenant::all()->runForEach(function () {
         //     \App\Models\User::factory(1)->create();
