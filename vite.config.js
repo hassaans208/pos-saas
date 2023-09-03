@@ -16,6 +16,7 @@ export default defineConfig({
         hmr: {
            port: '',
            host: 'enigmaedgeinnovation.tech',
+	   cors: false,
        },
     }
 });
